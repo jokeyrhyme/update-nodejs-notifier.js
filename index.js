@@ -2,11 +2,12 @@
 'use strict'
 
 const lazyRequire = require('lazy-req')(require)
+const Notifier = require('update-notifier').Notifier
+const UpdateChecker = require('update-notifier').UpdateChecker
 
 const chalk = lazyRequire('chalk')
 
-const Notifier = require('update-notifier').Notifier
-const UpdateChecker = require('update-notifier').UpdateChecker
+const versions = require('./lib/versions.js')
 
 /* ::
 type UpdateNodejsNotifierOptions = {|
@@ -36,10 +37,9 @@ function UpdateNodejsNotifier (
   this.updateChecker = new UpdateChecker({
     currentVersion: process.version,
     getLatest: function () {
-      // TODO: make request to https://nodejs.org/dist/index.json
-      // TODO: parse results
       // TODO: compare results against alert settings and current
-      return Promise.resolve('1.2.3')
+      return versions.fetchList()
+        .then(versions.latestVersion)
     },
     updaterName: 'node.js'
   })

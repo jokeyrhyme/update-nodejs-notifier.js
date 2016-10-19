@@ -1,23 +1,13 @@
 {
   "name": "update-nodejs-notifier",
-  "version": "1.0.0",
   "description": "tell your CLI users that their Node.js is old",
-  "main": "index.js",
-  "scripts": {
-    "ava": "nyc ava",
-    "nyc": "nyc check-coverage",
-    "test": "npm run ava && npm run nyc",
-    "posttest": "npm run eslint && npm run flow_check && npm run fixpack",
-    "eslint": "eslint --fix --cache .",
-    "flow_check": "flow check",
-    "fixpack": "fixpack"
-  },
-  "keywords": [],
+  "version": "1.0.0",
   "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
-  "license": "MIT",
-  "engines": {
-    "node": ">=4",
-    "npm": ">=3"
+  "dependencies": {
+    "lazy-req": "^1.1.0",
+    "lodash.memoize": "^4.1.2",
+    "node-fetch": "^1.6.3",
+    "update-notifier": "git+https://github.com/jokeyrhyme/update-notifier.git#extract-update-checker"
   },
   "devDependencies": {
     "ava": "^0.16.0",
@@ -30,12 +20,24 @@
     "flow-bin": "^0.33.0",
     "nyc": "^8.3.1"
   },
-  "dependencies": {
-    "lazy-req": "^1.1.0",
-    "update-notifier": "git+https://github.com/jokeyrhyme/update-notifier.git#extract-update-checker"
+  "engines": {
+    "node": ">=4",
+    "npm": ">=3"
   },
   "files": [
     "index.js",
     "lib"
-  ]
+  ],
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "ava": "nyc ava",
+    "eslint": "eslint --fix --cache .",
+    "fixpack": "fixpack",
+    "flow_check": "flow check",
+    "nyc": "nyc check-coverage",
+    "posttest": "npm run eslint && npm run flow_check && npm run fixpack",
+    "test": "npm run ava && npm run nyc"
+  }
 }
