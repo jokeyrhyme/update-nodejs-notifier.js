@@ -44,6 +44,17 @@ test('daysOld test()', (t) => {
   )
 })
 
+test('matchAlerts() finding no alerts', (t) => {
+  t.is(lib.matchAlerts({}, [], 'v1.2.3'), null)
+})
+
+test('matchAlerts() finding checkEngines alert', (t) => {
+  t.is(lib.matchAlerts({
+    checkEngines: true,
+    engines: { node: '>=2' }
+  }, [], 'v1.2.3'), lib.ALERTS['checkEngines'])
+})
+
 test('stableMajor test()', (t) => {
   const list = [
     { version: 'v3.4.5', date: '', files: [], modules: '', lts: false },
