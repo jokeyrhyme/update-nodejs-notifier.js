@@ -1,0 +1,28 @@
+{
+  "name": "update-nodejs-notifier",
+  "version": "1.0.0",
+  "description": "tell your CLI users that their Node.js is old",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint --fix --cache .",
+    "flow_check": "flow check || exit 0",
+    "fixpack": "fixpack"
+  },
+  "keywords": [],
+  "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=4",
+    "npm": ">=3"
+  },
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-node": "^2.1.3",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "fixpack": "^2.3.1",
+    "flow-bin": "^0.33.0"
+  }
+}
