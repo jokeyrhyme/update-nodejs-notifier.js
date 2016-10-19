@@ -10,17 +10,22 @@ const chalk = lazyRequire('chalk')
 const versions = require('./lib/versions.js')
 
 /* ::
-type UpdateNodejsNotifierOptions = {|
+export type PackageEngines = {
+  node: string | void;
+};
+export type UpdateNodejsNotifierOptions = {
+  engines: PackageEngines | void;
   notSupported: boolean | void;
   checkEngines: boolean | void;
   daysOld: number | void;
   stableMajor: boolean | void;
   stableMinor: boolean | void;
   stablePatch: boolean | void;
-|};
+};
 */
 
 const defaults = {
+  engines: {},
   notSupported: true,
   checkEngines: true,
   daysOld: Infinity,

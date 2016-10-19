@@ -10,7 +10,9 @@ tell your CLI users that their Node.js is old
 
 ```js
 const updateNodejsNotifier = require('update-nodejs-notifier')
-updateNodejsNotifier().notify()
+updateNodejsNotifier({
+  engines: require('./package.json').engines
+}).notify()
 ```
 
 
@@ -20,6 +22,7 @@ updateNodejsNotifier().notify()
 const updateNodejsNotifier = require('update-nodejs-notifier')
 
 const notifier = updateNodejsNotifier({
+  engines: require('./package.json').engines,
   // listed in order of most-severe to least-severe
   // we display the first most-severe matching alert
   // these are the default settings
