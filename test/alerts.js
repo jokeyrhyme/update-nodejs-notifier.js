@@ -4,6 +4,22 @@ const test = require('ava')
 
 const lib = require('../lib/alerts.js')
 
+test('all alerts implement required interface', (t) => {
+  t.true(lib.ALERTS && typeof lib.ALERTS === 'object')
+  Object.keys(lib.ALERTS).forEach((key) => {
+    const alert = lib.ALERTS[key]
+    t.true(alert && typeof alert === 'object', `ALERTS[${key}]`)
+
+    t.is(typeof alert.isEnabled, 'function', key, `ALERTS[${key}]`)
+    t.is(typeof alert.isEnabled({}), 'boolean', `ALERTS[${key}]`)
+
+    t.is(typeof alert.message, 'function', `ALERTS[${key}]`)
+    t.is(typeof alert.message({}, ''), 'string', `ALERTS[${key}]`)
+
+    t.is(typeof alert.test, 'function', `ALERTS[${key}]`)
+  })
+})
+
 test('daysOld test()', (t) => {
   const TWO_DAYS = 2 * 24 * 60 * 60 * 1000
   const dayBeforeYesterday = (new Date(new Date() - TWO_DAYS)).toISOString()
@@ -30,6 +46,19 @@ test('daysOld test()', (t) => {
 
 test('matchAlerts() finding no alerts', (t) => {
   t.is(lib.matchAlerts({}, [], 'v1.2.3'), null)
+})
+
+test('matchAlerts() returns 1st matching alert', (t) => {
+  const list = [
+    { version: 'v3.4.5', date: '', files: [], modules: '', lts: false },
+    { version: 'v2.3.4', date: '', files: [], modules: '', lts: false },
+    { version: 'v1.2.3', date: '', files: [], modules: '', lts: false }
+  ]
+  const expected = lib.ALERTS['stableMajor']
+  t.is(lib.matchAlerts({
+    stableMajor: true,
+    stableMinor: true
+  }, list, 'v1.2.3'), expected)
 })
 
 test('stableMajor test()', (t) => {
