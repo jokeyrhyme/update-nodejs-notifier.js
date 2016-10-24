@@ -11,24 +11,17 @@ const alerts = require('./lib/alerts.js')
 const versions = require('./lib/versions.js')
 
 /* ::
-export type PackageEngines = {
-  node: string | void;
-};
 export type UpdateNodejsNotifierOptions = {
-  engines: PackageEngines | void;
-  notSupported: boolean | void;
-  checkEngines: boolean | void;
-  daysOld: number | void;
-  stableMajor: boolean | void;
-  stableMinor: boolean | void;
-  stablePatch: boolean | void;
-};
+  notSupported?: boolean,
+  daysOld?: number,
+  stableMajor?: boolean,
+  stableMinor?: boolean,
+  stablePatch?: boolean
+}
 */
 
 const defaults = {
-  engines: {},
   notSupported: true,
-  checkEngines: true,
   daysOld: Infinity,
   stableMajor: true,
   stableMinor: false,

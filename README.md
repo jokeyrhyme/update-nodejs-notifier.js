@@ -10,9 +10,7 @@ tell your CLI users that their Node.js is old
 
 ```js
 const updateNodejsNotifier = require('update-nodejs-notifier')
-updateNodejsNotifier({
-  engines: require('./package.json').engines
-}).notify()
+updateNodejsNotifier().notify()
 ```
 
 
@@ -22,12 +20,10 @@ updateNodejsNotifier({
 const updateNodejsNotifier = require('update-nodejs-notifier')
 
 const notifier = updateNodejsNotifier({
-  engines: require('./package.json').engines,
   // listed in order of most-severe to least-severe
   // we display the first most-severe matching alert
   // these are the default settings
   notSupported: true, // alert if upstream Node.js support ended
-  checkEngines: true, // alert if package.json "engines" mismatch
   daysOld: Infinity, // alert if version released this long ago
   stableMajor: true, // alert if MAJOR version older than best "stable"
   stableMinor: false, // alert if MINOR version older than best "stable"

@@ -4,22 +4,6 @@ const test = require('ava')
 
 const lib = require('../lib/alerts.js')
 
-test('checkEngines test()', (t) => {
-  t.is(lib.ALERTS['checkEngines'].test({}, [], 'v1.2.3'), false)
-  t.is(
-    lib.ALERTS['checkEngines'].test({
-      engines: { node: '>=1' }
-    }, [], 'v1.2.3'),
-    false
-  )
-  t.is(
-    lib.ALERTS['checkEngines'].test({
-      engines: { node: '>=2' }
-    }, [], 'v1.2.3'),
-    true
-  )
-})
-
 test('daysOld test()', (t) => {
   const TWO_DAYS = 2 * 24 * 60 * 60 * 1000
   const dayBeforeYesterday = (new Date(new Date() - TWO_DAYS)).toISOString()
@@ -46,13 +30,6 @@ test('daysOld test()', (t) => {
 
 test('matchAlerts() finding no alerts', (t) => {
   t.is(lib.matchAlerts({}, [], 'v1.2.3'), null)
-})
-
-test('matchAlerts() finding checkEngines alert', (t) => {
-  t.is(lib.matchAlerts({
-    checkEngines: true,
-    engines: { node: '>=2' }
-  }, [], 'v1.2.3'), lib.ALERTS['checkEngines'])
 })
 
 test('stableMajor test()', (t) => {
