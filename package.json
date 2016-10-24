@@ -3,6 +3,9 @@
   "description": "tell your CLI users that their Node.js is old",
   "version": "1.0.0",
   "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
+  "bugs": {
+    "url": "https://github.com/jokeyrhyme/update-nodejs-notifier.js/issues"
+  },
   "dependencies": {
     "boxen-notify": "^1.0.0",
     "chalk": "^1.1.3",
@@ -21,6 +24,10 @@
     "flow-bin": "^0.33.0",
     "nyc": "^8.3.2"
   },
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
   "engines": {
     "node": ">=4",
     "npm": ">=2"
@@ -29,14 +36,26 @@
     "index.js",
     "lib"
   ],
-  "keywords": [],
+  "homepage": "https://github.com/jokeyrhyme/update-nodejs-notifier.js#readme",
+  "keywords": [
+    "check",
+    "nodejs",
+    "notify",
+    "update",
+    "update-notifier",
+    "versions"
+  ],
   "license": "MIT",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokeyrhyme/update-nodejs-notifier.js.git"
+  },
   "scripts": {
     "ava": "nyc ava",
     "eslint": "eslint --fix --cache .",
     "fixpack": "fixpack",
-    "flow_check": "flow check",
+    "flow_check": "flow check || exit 0",
     "nyc": "nyc check-coverage",
     "posttest": "npm run eslint && npm run flow_check && npm run fixpack",
     "test": "npm run ava && npm run nyc"
