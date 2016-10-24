@@ -1,7 +1,7 @@
 {
   "name": "update-nodejs-notifier",
   "description": "tell your CLI users that their Node.js is old",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
   "bugs": {
     "url": "https://github.com/jokeyrhyme/update-nodejs-notifier.js/issues"
