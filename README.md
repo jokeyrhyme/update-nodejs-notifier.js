@@ -9,17 +9,17 @@ tell your CLI users that their Node.js is old
 ### Simple example
 
 ```js
-const updateNodejsNotifier = require('update-nodejs-notifier')
-updateNodejsNotifier().notify()
+const { updateNodejsNotifier } = require('update-nodejs-notifier')
+updateNodejsNotifier()
 ```
 
 
 ### Comprehensive example
 
 ```js
-const updateNodejsNotifier = require('update-nodejs-notifier')
+const { updateNodejsNotifier } = require('update-nodejs-notifier')
 
-const notifier = updateNodejsNotifier({
+updateNodejsNotifier({
   // listed in order of most-severe to least-severe
   // we display the first most-severe matching alert
   // these are the default settings
@@ -29,23 +29,16 @@ const notifier = updateNodejsNotifier({
   stableMinor: false, // alert if MINOR version older than best "stable"
   stablePatch: false, // alert if PATCH version older than best "stable"
 })
-
-notifier.notify()
 ```
-
-
-## How
-
-This project extends functionality in the popular [update-notifier](https://github.com/yeoman/update-notifier) package.
-See upstream documentation for more details.
-
-We drop behaviour that is specific to NPM package versions,
-replacing it with logic to check the Node.js version.
 
 
 ## See Also
 
 -   [boxen-notify](https://github.com/jokeyrhyme/boxen-notify.js)
+
+-   [hsipe](https://github.com/jokeyrhyme/hsipe.js)
+
+-   [conf](https://github.com/sindresorhus/conf)
 
 -   [package-engines-notifier](https://github.com/jokeyrhyme/package-engines-notifier.js)
 
