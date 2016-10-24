@@ -63,7 +63,9 @@ function updateNodejsNotifier (
     const chalk = require('chalk') // slow, so do this _after_ check
 
     const latest = versions.latestStableVersion(nodejsVersions)
-    const message = 'Update available ' + chalk.dim(current) + chalk.reset(' → ') +
+    const message = chalk.blue('Node.js') +
+      chalk.reset(' update available ') +
+      chalk.dim(current) + chalk.reset(' → ') +
       chalk.green(latest) + chalk.reset('\n') +
       alert.message(options, current)
 
