@@ -32,6 +32,11 @@ updateNodejsNotifier({
 ```
 
 
+## Roadmap
+
+-   [ ] finish "notSupported" behaviour
+
+
 ## See Also
 
 -   [boxen-notify](https://github.com/jokeyrhyme/boxen-notify.js)

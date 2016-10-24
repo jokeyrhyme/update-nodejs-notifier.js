@@ -3,13 +3,12 @@
 
 const path = require('path')
 
-const Conf = require('conf')
+const getCake = require('hsipe').getCake
 const putInOven = require('hsipe').putInOven
 
 const NODEJS_URL = require('./lib/bake.js').NODEJS_URL
 
 const cakeName = NODEJS_URL.replace(/\W+/g, '-')
-const conf = new Conf({ configName: cakeName })
 
 const alerts = require('./lib/alerts.js')
 const versions = require('./lib/versions.js')
@@ -47,7 +46,8 @@ function updateNodejsNotifier (
   options = Object.assign({}, defaults, options)
 
   // try to continue on, in case we already started baking last time
-  const nodejsVersions = options.versions || conf.get('versions')
+  const cake = getCake({ cakeName })
+  const nodejsVersions = options.versions || cake.versions
   const current = options.current || process.version
 
   if (nodejsVersions) {

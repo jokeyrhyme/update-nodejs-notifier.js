@@ -12,20 +12,12 @@ test('exports a "bake" function', (t) => {
   t.is(typeof lib.bake, 'function')
 })
 
-test('bake() returns a promise, stores "versions" array', (t) => {
-  let versions
-  const mockConf = {
-    set: (key, value) => {
-      t.is(key, 'versions')
-      versions = value
-    }
-  }
-  const mockOptions = { conf: mockConf }
-  const result = lib.bake(mockOptions)
-  t.is(typeof result.then, 'function')
-  return result.then(() => {
-    t.true(Array.isArray(versions))
-    t.true(versions.length > 1)
-    t.is(typeof versions[0].version, 'string')
-  })
+test('bake() returns a promised cake, with "versions" array', (t) => {
+  return lib.bake({})
+    .then((cake) => {
+      t.truthy(cake && typeof cake === 'object')
+      t.true(Array.isArray(cake.versions))
+      t.true(cake.versions.length > 1)
+      t.is(typeof cake.versions[0].version, 'string')
+    })
 })
