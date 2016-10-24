@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
   "dependencies": {
+    "boxen-notify": "^1.0.0",
     "lazy-req": "^1.1.0",
     "lodash.memoize": "^4.1.2",
     "node-fetch": "^1.6.3",

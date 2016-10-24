@@ -41,3 +41,12 @@ See upstream documentation for more details.
 
 We drop behaviour that is specific to NPM package versions,
 replacing it with logic to check the Node.js version.
+
+
+## See Also
+
+-   [boxen-notify](https://github.com/jokeyrhyme/boxen-notify.js)
+
+-   [package-engines-notifier](https://github.com/jokeyrhyme/package-engines-notifier.js)
+
+-   [update-notifier](https://github.com/yeoman/update-notifier)

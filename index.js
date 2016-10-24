@@ -2,7 +2,6 @@
 'use strict'
 
 const lazyRequire = require('lazy-req')(require)
-const Notifier = require('update-notifier').Notifier
 const UpdateChecker = require('update-notifier').UpdateChecker
 
 const chalk = lazyRequire('chalk')
@@ -56,7 +55,6 @@ UpdateNodejsNotifier.prototype.check = function () {
 
 UpdateNodejsNotifier.prototype.notify = function (opts) {
   const list = this.config ? this.config.get('list') || [] : []
-  const notifier = new Notifier()
   const alert = alerts.matchAlerts(this.options, list, process.version)
 
   if (!alert) {
@@ -74,7 +72,7 @@ UpdateNodejsNotifier.prototype.notify = function (opts) {
     // TODO: figure out better update instructions
     // ' \nRun ' + chalk().cyan('custom update command') + ' to update'
 
-  notifier.notify(opts)
+  require('update-notifier').notify(opts)
 
   return this
 }
