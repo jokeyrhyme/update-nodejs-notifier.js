@@ -3,7 +3,12 @@
 tell your CLI users that their Node.js is old
 
 
-## Examples
+## Usage
+
+Set and forget.
+Users will see a notification if their Node.js version needs updating.
+
+This library will make no more than a single HTTP request every 5 days.
 
 
 ### Simple example

@@ -27,6 +27,8 @@ export type UpdateNodejsNotifierOptions = {
 }
 */
 
+const ONE_DAY = 7 * 24 * 60 * 60 * 1000
+
 const defaults = {
   notSupported: true,
   daysOld: Infinity,
@@ -40,7 +42,8 @@ function updateNodejsNotifier (
 ) /* : boolean */ {
   putInOven({
     bakePath: path.join(__dirname, 'lib', 'bake.js'),
-    cakeName
+    cakeName,
+    interval: 5 * ONE_DAY
   })
 
   options = Object.assign({}, defaults, options)
