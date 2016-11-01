@@ -61,6 +61,22 @@ test('matchAlerts() returns 1st matching alert', (t) => {
   }, list, 'v1.2.3'), expected)
 })
 
+test('notSupported test()', (t) => {
+  const ltsFromDate = require('nodejs-support-dates').ltsFromDate
+
+  const ltsMajor = ltsFromDate(new Date())
+  t.is(
+    lib.ALERTS['notSupported'].test({}, [], 'v5.0.0'),
+    true,
+    'v5.x is not supported now, alert!'
+  )
+  t.is(
+    lib.ALERTS['notSupported'].test({}, [], `v${ltsMajor}.0.0`),
+    false,
+    'LTS versions are supported, no alert'
+  )
+})
+
 test('stableMajor test()', (t) => {
   const list = [
     { version: 'v3.4.5', date: '', files: [], modules: '', lts: false },

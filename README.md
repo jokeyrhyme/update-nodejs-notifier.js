@@ -37,11 +37,6 @@ updateNodejsNotifier({
 ```
 
 
-## Roadmap
-
--   [ ] finish "notSupported" behaviour
-
-
 ## See Also
 
 -   [boxen-notify](https://github.com/jokeyrhyme/boxen-notify.js)
@@ -53,3 +48,5 @@ updateNodejsNotifier({
 -   [package-engines-notifier](https://github.com/jokeyrhyme/package-engines-notifier.js)
 
 -   [update-notifier](https://github.com/yeoman/update-notifier)
+
+-   [nodejs-support-dates](https://github.com/jokeyrhyme/nodejs-support-dates.js)
