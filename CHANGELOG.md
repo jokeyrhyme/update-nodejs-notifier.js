@@ -4,6 +4,9 @@
 ## Unreleased
 
 
+## 1.1.0 - 2016-11-01
+
+
 ### Added
 
 -   use [nodejs-support-dates](https://github.com/jokeyrhyme/nodejs-support-dates.js) to provide warnings about unsupported versions
