@@ -7,7 +7,7 @@ environment:
 install:
   - ps: 'Install-Product node $env:nodejs_version x64'
   - npm install --global npm-windows-upgrade
-  - npm-windows-upgrade --no-prompt
+  - npm-windows-upgrade --no-spinner
   - npm install --global flow-typed
   - npm install --global typings
   - npm install --global yarn
