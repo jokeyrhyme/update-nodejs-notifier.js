@@ -23,6 +23,7 @@ export type UpdateNodejsNotifierOptions = {
   stablePatch?: boolean,
 
   current?: string,
+  notify?: ({ message: string }) => void,
   versions?: NodejsVersion[]
 }
 */
@@ -76,7 +77,11 @@ function updateNodejsNotifier (
     // TODO: figure out better update instructions
     // ' \nRun ' + chalk.cyan('custom update command') + ' to update'
 
-    require('boxen-notify').notify({ message })
+    if (typeof options.notify === 'function') {
+      options.notify({ message })
+    } else {
+      require('boxen-notify').notify({ message })
+    }
     return true
   }
 
