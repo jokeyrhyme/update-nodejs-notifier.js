@@ -40,17 +40,21 @@ const defaults = {
 function updateNodejsNotifier (
   options /* : ?UpdateNodejsNotifierOptions */
 ) /* : boolean */ {
-  putInOven({
-    bakePath: path.join(__dirname, 'lib', 'bake.js'),
-    cakeName,
-    interval: 5 * ONE_DAY
-  })
-
   options = Object.assign({}, defaults, options)
 
-  // try to continue on, in case we already started baking last time
-  const cake = getCake({ cakeName })
-  const nodejsVersions = options.versions || cake.versions
+  const nodejsVersions = options.versions || (() => {
+    putInOven({
+      bakePath: path.join(__dirname, 'lib', 'bake.js'),
+      cakeName,
+      interval: 5 * ONE_DAY
+    })
+
+    // try to continue on, in case we already started baking last time
+    const cake = getCake({ cakeName })
+
+    return cake.versions
+  })()
+
   const current = options.current || process.version
 
   if (nodejsVersions) {

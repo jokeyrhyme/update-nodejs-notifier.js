@@ -4,6 +4,11 @@
 ## Unreleased
 
 
+### Changed
+
+-   if caller passes "versions" in, don't fetch versions (better for testing)
+
+
 ## 1.1.0 - 2016-11-01
 
 
