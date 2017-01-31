@@ -5,6 +5,7 @@ const path = require('path')
 
 const getCake = require('hsipe').getCake
 const putInOven = require('hsipe').putInOven
+const semver = require('semver')
 
 const NODEJS_URL = require('./lib/bake.js').NODEJS_URL
 
@@ -67,7 +68,10 @@ function updateNodejsNotifier (
 
     const chalk = require('chalk') // slow, so do this _after_ check
 
-    const latest = versions.latestStableVersion(nodejsVersions)
+    let latest = versions.latestStableVersion(nodejsVersions)
+    if (semver.gt(current, latest)) {
+      latest = versions.latestVersion(nodejsVersions)
+    }
     const message = chalk.blue('Node.js') +
       chalk.reset(' update available ') +
       chalk.dim(current) + chalk.reset(' → ') +
