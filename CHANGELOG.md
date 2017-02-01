@@ -4,6 +4,9 @@
 ## Unreleased
 
 
+## 1.1.1 - 2017-02-01
+
+
 ### Changed
 
 -   if caller passes `versions` in, don't fetch versions (better for testing)
