@@ -5,6 +5,7 @@ const path = require('path')
 
 const getCake = require('hsipe').getCake
 const putInOven = require('hsipe').putInOven
+const semver = require('semver')
 
 const NODEJS_URL = require('./lib/bake.js').NODEJS_URL
 
@@ -23,6 +24,7 @@ export type UpdateNodejsNotifierOptions = {
   stablePatch?: boolean,
 
   current?: string,
+  notify?: ({ message: string }) => void,
   versions?: NodejsVersion[]
 }
 */
@@ -40,17 +42,21 @@ const defaults = {
 function updateNodejsNotifier (
   options /* : ?UpdateNodejsNotifierOptions */
 ) /* : boolean */ {
-  putInOven({
-    bakePath: path.join(__dirname, 'lib', 'bake.js'),
-    cakeName,
-    interval: 5 * ONE_DAY
-  })
-
   options = Object.assign({}, defaults, options)
 
-  // try to continue on, in case we already started baking last time
-  const cake = getCake({ cakeName })
-  const nodejsVersions = options.versions || cake.versions
+  const nodejsVersions = options.versions || (() => {
+    putInOven({
+      bakePath: path.join(__dirname, 'lib', 'bake.js'),
+      cakeName,
+      interval: 5 * ONE_DAY
+    })
+
+    // try to continue on, in case we already started baking last time
+    const cake = getCake({ cakeName })
+
+    return cake.versions
+  })()
+
   const current = options.current || process.version
 
   if (nodejsVersions) {
@@ -62,7 +68,10 @@ function updateNodejsNotifier (
 
     const chalk = require('chalk') // slow, so do this _after_ check
 
-    const latest = versions.latestStableVersion(nodejsVersions)
+    let latest = versions.latestStableVersion(nodejsVersions)
+    if (semver.gt(current, latest)) {
+      latest = versions.latestVersion(nodejsVersions)
+    }
     const message = chalk.blue('Node.js') +
       chalk.reset(' update available ') +
       chalk.dim(current) + chalk.reset(' → ') +
@@ -72,7 +81,11 @@ function updateNodejsNotifier (
     // TODO: figure out better update instructions
     // ' \nRun ' + chalk.cyan('custom update command') + ' to update'
 
-    require('boxen-notify').notify({ message })
+    if (typeof options.notify === 'function') {
+      options.notify({ message })
+    } else {
+      require('boxen-notify').notify({ message })
+    }
     return true
   }
 

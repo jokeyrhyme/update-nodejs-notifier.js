@@ -4,6 +4,18 @@
 ## Unreleased
 
 
+### Changed
+
+-   if caller passes `versions` in, don't fetch versions (better for testing)
+
+-   allow caller to pass in `notify()` function (better for testing)
+
+
+### Fixed
+
+-   "update" message for unstable Node.js versions (#7)
+
+
 ## 1.1.0 - 2016-11-01
 
 
