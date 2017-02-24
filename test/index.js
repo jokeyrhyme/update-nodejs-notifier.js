@@ -1,5 +1,7 @@
+/* @flow */
 'use strict'
 
+const stripAnsi = require('strip-ansi')
 const test = require('ava')
 
 const lib = require('../index.js')
@@ -55,7 +57,7 @@ test('updateNodejsNotifier(), old unstable major version', (t) => {
   ]
   const notify = (options) => {
     const message = options.message || ''
-    t.is(message, `Node.js update available v7.0.0 → v7.1.0
+    t.is(stripAnsi(message), `Node.js update available v7.0.0 → v7.1.0
 v7.0.0 is more than 1 days old`)
     notify.called = true
   }
