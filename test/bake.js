@@ -1,3 +1,4 @@
+/* @flow */
 'use strict'
 
 const test = require('ava')
@@ -13,7 +14,7 @@ test('exports a "bake" function', (t) => {
 })
 
 test('bake() returns a promised cake, with "versions" array', (t) => {
-  return lib.bake({})
+  return lib.bake({ cake: {} })
     .then((cake) => {
       t.truthy(cake && typeof cake === 'object')
       t.true(Array.isArray(cake.versions))
